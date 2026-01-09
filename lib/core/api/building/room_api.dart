@@ -1,0 +1,120 @@
+import 'package:application_mapollege/core/model/building/room_model.dart';
+import 'package:application_mapollege/core/service/dio_service.dart';
+import 'package:application_mapollege/core/utility/error_utility.dart';
+import 'package:application_mapollege/core/utility/response_utility.dart';
+import 'package:dio/dio.dart';
+
+class RoomApi {
+  RoomApi(this._dio);
+
+  final DioService _dio;
+  final String requestPath = '/building/room';
+
+  Future<ResponseUtility<RoomModel>?> createRoom({
+    required String buildingId,
+    required String roomName,
+    required String roomNumber,
+    required String floor,
+    String? description,
+    bool isActive = true,
+    List<String>? imagePaths,
+  }) async {
+    try {
+      final Map<String, dynamic> data = {
+        'buildingId': buildingId,
+        'roomName': roomName,
+        'roomNumber': roomNumber,
+        'floor': floor,
+        'description': description,
+        'isActive': isActive,
+      };
+
+      if (imagePaths != null && imagePaths.isNotEmpty) {
+        data['images'] = [
+          for (String path in imagePaths) await MultipartFile.fromFile(path),
+        ];
+      }
+
+      final formData = FormData.fromMap(data, ListFormat.multiCompatible);
+      final response = await _dio.dio.post(requestPath, data: formData);
+
+      return ResponseUtility.fromModel(RoomModel.fromModel, response.data);
+    } on DioException catch (e) {
+      ErrorUtility.handleDioException(e);
+      return null;
+    }
+  }
+
+  Future<ResponseUtility<RoomModel>?> updateRoom({
+    required String id,
+    required String buildingId,
+    required String roomName,
+    required String roomNumber,
+    required String floor,
+    String? description,
+    bool isActive = true,
+    List<String>? imagePaths,
+  }) async {
+    try {
+      final Map<String, dynamic> data = {
+        'id': id,
+        'buildingId': buildingId,
+        'roomName': roomName,
+        'roomNumber': roomNumber,
+        'floor': floor,
+        'description': description,
+        'isActive': isActive,
+      };
+
+      if (imagePaths != null && imagePaths.isNotEmpty) {
+        data['images'] = [
+          for (String path in imagePaths) await MultipartFile.fromFile(path),
+        ];
+      }
+
+      final formData = FormData.fromMap(data, ListFormat.multiCompatible);
+      final response = await _dio.dio.put(requestPath, data: formData);
+
+      return ResponseUtility.fromModel(RoomModel.fromModel, response.data);
+    } on DioException catch (e) {
+      ErrorUtility.handleDioException(e);
+      return null;
+    }
+  }
+
+  Future<ResponseUtility<RoomModel>?> updateActive({
+    required String id,
+    required bool isActive,
+  }) async {
+    try {
+      final response = await _dio.dio.put(
+        '$requestPath/$id',
+        queryParameters: {'active': isActive},
+      );
+      return ResponseUtility.fromModel(RoomModel.fromModel, response.data);
+    } on DioException catch (e) {
+      ErrorUtility.handleDioException(e);
+      return null;
+    }
+  }
+
+  Future<ResponseUtility<RoomModel>?> getRoomByid({required String id}) async {
+    try {
+      final response = await _dio.dio.get('$requestPath/$id');
+      return ResponseUtility.fromModel(RoomModel.fromModel, response.data);
+    } on DioException catch (e) {
+      ErrorUtility.handleDioException(e);
+      return null;
+    }
+  }
+
+  Future<ResponseUtility<bool>?> deleteRoom({required String id}) async {
+    try {
+      final response = await _dio.dio.delete('$requestPath/$id');
+      return ResponseUtility.fromRaw(response.data);
+    } on DioException catch (e) {
+      ErrorUtility.handleDioException(e);
+      return null;
+    }
+  }
+}

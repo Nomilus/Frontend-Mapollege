@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "890641607442",
+    "project_id": "application-mapollege",
+    "storage_bucket": "application-mapollege.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890641607442:android:6cac390f1e2e87c81f61cb",
+        "android_client_info": {
+          "package_name": "com.example.application_mapollege"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "890641607442-q3q87nn1gjeol0lng68kbssgrel5ppu6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDilJ4T4z9RTRmgTGJtvUzFnze9BsrIkr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890641607442-q3q87nn1gjeol0lng68kbssgrel5ppu6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
