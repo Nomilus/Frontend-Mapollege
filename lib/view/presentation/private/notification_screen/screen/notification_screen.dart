@@ -1,9 +1,9 @@
-import 'package:application_mapollege/core/model/people/notification_model.dart';
-import 'package:application_mapollege/view/components/not_component.dart';
-import 'package:application_mapollege/view/components/shimmer_component.dart';
-import 'package:application_mapollege/view/presentation/private/notification_screen/controller/notification_controller.dart';
+import 'package:mapollege/core/model/people/notification_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/view/components/not_component.dart';
+import 'package:mapollege/view/components/shimmer_component.dart';
+import 'package:mapollege/view/presentation/private/notification_screen/controller/notification_controller.dart';
 
 class NotificationScreen extends GetView<NotificationController> {
   const NotificationScreen({super.key});

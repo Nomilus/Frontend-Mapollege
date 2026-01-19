@@ -1,6 +1,6 @@
-import 'package:application_mapollege/core/enum/work_enum.dart';
-import 'package:application_mapollege/core/model/image_model.dart';
-import 'package:application_mapollege/core/model/section/member_model.dart';
+import 'package:mapollege/core/enum/work_enum.dart';
+import 'package:mapollege/core/model/image_model.dart';
+import 'package:mapollege/core/model/section/member_model.dart';
 
 class WorkModel {
   final String id;

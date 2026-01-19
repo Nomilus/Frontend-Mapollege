@@ -1,14 +1,14 @@
 import 'dart:async';
-import 'package:application_mapollege/core/api/people/auth_api.dart';
-import 'package:application_mapollege/core/api/people/user_api.dart';
-import 'package:application_mapollege/core/model/people/user_model.dart';
-import 'package:application_mapollege/core/service/dio_service.dart';
-import 'package:application_mapollege/core/utility/error_utility.dart';
-import 'package:application_mapollege/core/utility/snackbar_utility.dart';
+import 'package:mapollege/core/api/people/auth_api.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:mapollege/core/api/people/user_api.dart';
+import 'package:mapollege/core/model/people/user_model.dart';
+import 'package:mapollege/core/service/dio_service.dart';
+import 'package:mapollege/core/utility/error_utility.dart';
+import 'package:mapollege/core/utility/snackbar_utility.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService extends GetxService {

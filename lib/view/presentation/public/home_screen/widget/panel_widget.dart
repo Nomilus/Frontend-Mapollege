@@ -1,10 +1,10 @@
-import 'package:application_mapollege/config/router/routes.dart';
-import 'package:application_mapollege/view/components/delegate_component.dart';
-import 'package:application_mapollege/view/components/image_component.dart';
-import 'package:application_mapollege/view/components/info_card_component.dart';
-import 'package:application_mapollege/view/components/not_component.dart';
-import 'package:application_mapollege/view/components/shimmer_component.dart';
-import 'package:application_mapollege/view/presentation/public/home_screen/controller/panel_controller.dart';
+import 'package:mapollege/config/router/routes.dart';
+import 'package:mapollege/view/components/delegate_component.dart';
+import 'package:mapollege/view/components/image_component.dart';
+import 'package:mapollege/view/components/info_card_component.dart';
+import 'package:mapollege/view/components/not_component.dart';
+import 'package:mapollege/view/components/shimmer_component.dart';
+import 'package:mapollege/view/presentation/public/home_screen/controller/panel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sliding_up_panel/flutter_sliding_up_panel.dart';
 import 'package:get/get.dart';

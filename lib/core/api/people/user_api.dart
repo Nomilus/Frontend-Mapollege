@@ -1,9 +1,9 @@
-import 'package:application_mapollege/core/enum/role_enum.dart';
-import 'package:application_mapollege/core/model/people/user_model.dart';
-import 'package:application_mapollege/core/service/dio_service.dart';
-import 'package:application_mapollege/core/utility/error_utility.dart';
-import 'package:application_mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/enum/role_enum.dart';
 import 'package:dio/dio.dart';
+import 'package:mapollege/core/model/people/user_model.dart';
+import 'package:mapollege/core/service/dio_service.dart';
+import 'package:mapollege/core/utility/error_utility.dart';
+import 'package:mapollege/core/utility/response_utility.dart';
 
 class UserApi {
   UserApi(this._dio);

@@ -1,7 +1,7 @@
-import 'package:application_mapollege/core/model/people/notification_model.dart';
-import 'package:application_mapollege/core/service/dio_service.dart';
-import 'package:application_mapollege/core/utility/error_utility.dart';
-import 'package:application_mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/people/notification_model.dart';
+import 'package:mapollege/core/service/dio_service.dart';
+import 'package:mapollege/core/utility/error_utility.dart';
+import 'package:mapollege/core/utility/response_utility.dart';
 import 'package:dio/dio.dart';
 
 class NotificationApi {
@@ -45,21 +45,7 @@ class NotificationApi {
       return null;
     }
   }
-
-  Future<ResponseUtility<List<NotificationModel>>?>
-  getAllNotificationsByUserId({required String userId}) async {
-    try {
-      final response = await _dio.dio.get('$requestPath/$userId');
-      return ResponseUtility.fromList(
-        NotificationModel.fromModel,
-        response.data,
-      );
-    } on DioException catch (e) {
-      ErrorUtility.handleDioException(e);
-      return null;
-    }
-  }
-
+  
   Future<ResponseUtility<List<NotificationModel>>?>
   getAllNotifications() async {
     try {

@@ -1,8 +1,8 @@
-import 'package:application_mapollege/core/model/people/token_model.dart';
-import 'package:application_mapollege/core/service/dio_service.dart';
-import 'package:application_mapollege/core/utility/error_utility.dart';
-import 'package:application_mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/people/token_model.dart';
 import 'package:dio/dio.dart';
+import 'package:mapollege/core/service/dio_service.dart';
+import 'package:mapollege/core/utility/error_utility.dart';
+import 'package:mapollege/core/utility/response_utility.dart';
 
 class AuthApi {
   AuthApi(this._dio);
@@ -27,7 +27,7 @@ class AuthApi {
 
   Future<ResponseUtility<TokenModel>?> refreshToken({
     required String refreshToken,
-  }) async {    
+  }) async {
     try {
       final response = await _dio.dio.post(
         '$requestPath/refresh',

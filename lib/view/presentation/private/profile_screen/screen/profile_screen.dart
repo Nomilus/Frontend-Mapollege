@@ -1,10 +1,10 @@
-import 'package:application_mapollege/config/router/routes.dart';
-import 'package:application_mapollege/core/model/people/user_model.dart';
-import 'package:application_mapollege/view/components/not_component.dart';
-import 'package:application_mapollege/view/components/shimmer_component.dart';
-import 'package:application_mapollege/view/presentation/private/profile_screen/controller/profile_controller.dart';
+import 'package:mapollege/config/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/core/model/people/user_model.dart';
+import 'package:mapollege/view/components/not_component.dart';
+import 'package:mapollege/view/components/shimmer_component.dart';
+import 'package:mapollege/view/presentation/private/profile_screen/controller/profile_controller.dart';
 
 class ProfileScreen extends GetView<ProfileController> {
   const ProfileScreen({super.key});

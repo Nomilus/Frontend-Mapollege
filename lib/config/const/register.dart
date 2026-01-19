@@ -1,7 +1,7 @@
-import 'package:application_mapollege/core/service/auth_service.dart';
-import 'package:application_mapollege/core/service/dio_service.dart';
-import 'package:application_mapollege/core/service/location_service.dart';
-import 'package:application_mapollege/core/service/theme_service.dart';
+import 'package:mapollege/core/service/auth_service.dart';
+import 'package:mapollege/core/service/dio_service.dart';
+import 'package:mapollege/core/service/location_service.dart';
+import 'package:mapollege/core/service/theme_service.dart';
 import 'package:get/get.dart';
 
 class Register {

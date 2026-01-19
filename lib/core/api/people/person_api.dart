@@ -1,7 +1,7 @@
-import 'package:application_mapollege/core/model/people/person_model.dart';
-import 'package:application_mapollege/core/service/dio_service.dart';
-import 'package:application_mapollege/core/utility/error_utility.dart';
-import 'package:application_mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/people/person_model.dart';
+import 'package:mapollege/core/service/dio_service.dart';
+import 'package:mapollege/core/utility/error_utility.dart';
+import 'package:mapollege/core/utility/response_utility.dart';
 import 'package:dio/dio.dart';
 
 class PersonApi {

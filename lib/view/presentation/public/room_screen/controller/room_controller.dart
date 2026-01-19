@@ -1,7 +1,7 @@
-import 'package:application_mapollege/core/api/building/room_api.dart';
-import 'package:application_mapollege/core/model/building/room_model.dart';
-import 'package:application_mapollege/core/service/dio_service.dart';
+import 'package:mapollege/core/api/building/room_api.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/core/model/building/room_model.dart';
+import 'package:mapollege/core/service/dio_service.dart';
 
 class RoomController extends GetxController {
   final RoomApi _roomApi = RoomApi(Get.find<DioService>());

@@ -1,6 +1,6 @@
 {
-    "name": "application_mapollege",
-    "short_name": "application_mapollege",
+    "name": "mapollege",
+    "short_name": "mapollege",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

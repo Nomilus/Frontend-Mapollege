@@ -1,8 +1,7 @@
-import 'package:application_mapollege/core/model/image_model.dart';
-import 'package:application_mapollege/core/model/building/room_model.dart';
-import 'package:application_mapollege/core/model/section/department_model.dart';
-import 'package:application_mapollege/core/model/section/work_model.dart';
-
+import 'package:mapollege/core/model/building/room_model.dart';
+import 'package:mapollege/core/model/image_model.dart';
+import 'package:mapollege/core/model/section/department_model.dart';
+import 'package:mapollege/core/model/section/work_model.dart';
 class BuildingModel {
   final String id;
   final String name;

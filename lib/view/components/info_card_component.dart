@@ -1,7 +1,8 @@
-import 'package:application_mapollege/core/model/image_model.dart';
-import 'package:application_mapollege/core/model/section/member_model.dart';
+import 'package:mapollege/core/model/image_model.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mapollege/core/model/section/member_model.dart';
 
 class InfoCardComponent extends StatelessWidget {
   const InfoCardComponent({

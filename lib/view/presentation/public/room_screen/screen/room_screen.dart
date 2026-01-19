@@ -1,10 +1,10 @@
-import 'package:application_mapollege/view/components/image_component.dart';
-import 'package:application_mapollege/view/components/info_card_component.dart';
-import 'package:application_mapollege/view/components/not_component.dart';
-import 'package:application_mapollege/view/components/shimmer_component.dart';
-import 'package:application_mapollege/view/presentation/public/room_screen/controller/room_controller.dart';
+import 'package:mapollege/view/components/image_component.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/view/components/info_card_component.dart';
+import 'package:mapollege/view/components/not_component.dart';
+import 'package:mapollege/view/components/shimmer_component.dart';
+import 'package:mapollege/view/presentation/public/room_screen/controller/room_controller.dart';
 
 class RoomScreen extends GetView<RoomController> {
   const RoomScreen({super.key});

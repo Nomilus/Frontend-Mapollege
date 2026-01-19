@@ -1,8 +1,8 @@
-import 'package:application_mapollege/core/api/building/building_api.dart';
-import 'package:application_mapollege/core/model/building/building_model.dart';
-import 'package:application_mapollege/core/service/dio_service.dart';
+import 'package:mapollege/core/api/building/building_api.dart';
 import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/core/model/building/building_model.dart';
+import 'package:mapollege/core/service/dio_service.dart';
 
 class PanelController extends GetxController {
   final BuildingApi _buildingApi = BuildingApi(Get.find<DioService>());

@@ -1,6 +1,6 @@
-import 'package:application_mapollege/core/enum/department_enum.dart';
-import 'package:application_mapollege/core/model/image_model.dart';
-import 'package:application_mapollege/core/model/section/member_model.dart';
+import 'package:mapollege/core/enum/department_enum.dart';
+import 'package:mapollege/core/model/image_model.dart';
+import 'package:mapollege/core/model/section/member_model.dart';
 
 class DepartmentModel {
   final String id;

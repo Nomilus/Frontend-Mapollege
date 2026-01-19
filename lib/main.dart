@@ -1,16 +1,16 @@
-import 'package:application_mapollege/config/const/permission.dart';
-import 'package:application_mapollege/config/const/register.dart';
-import 'package:application_mapollege/config/router/admin_router.dart';
-import 'package:application_mapollege/config/router/private_router.dart';
-import 'package:application_mapollege/config/router/public_router.dart';
-import 'package:application_mapollege/config/router/routes.dart';
-import 'package:application_mapollege/config/theme/app_theme.dart';
-import 'package:application_mapollege/firebase_options.dart';
+import 'package:mapollege/config/const/permission.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/config/const/register.dart';
+import 'package:mapollege/config/router/admin_router.dart';
+import 'package:mapollege/config/router/private_router.dart';
+import 'package:mapollege/config/router/public_router.dart';
+import 'package:mapollege/config/router/routes.dart';
+import 'package:mapollege/config/theme/app_theme.dart';
+import 'package:mapollege/firebase_options.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {

@@ -1,6 +1,6 @@
-import 'package:application_mapollege/config/router/routes.dart';
-import 'package:application_mapollege/core/service/auth_service.dart';
+import 'package:mapollege/config/router/routes.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/core/service/auth_service.dart';
 
 class SplashController extends GetxController {
   final userService = Get.find<AuthService>();

@@ -17,17 +17,29 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
-        return windows;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -40,51 +52,11 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBhV10xRnYqrOgMd18nFllYQbFWCeuLA1o',
-    appId: '1:890641607442:web:abdcc1e5100970421f61cb',
-    messagingSenderId: '890641607442',
-    projectId: 'application-mapollege',
-    authDomain: 'application-mapollege.firebaseapp.com',
-    storageBucket: 'application-mapollege.firebasestorage.app',
-    measurementId: 'G-HG1Z0E8ZGJ',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDilJ4T4z9RTRmgTGJtvUzFnze9BsrIkr0',
-    appId: '1:890641607442:android:6cac390f1e2e87c81f61cb',
+    apiKey: 'AIzaSyAqUsXlPlpq7o2ugecI7zjPcK5t3ueM_LA',
+    appId: '1:890641607442:android:a2939b840f3acca51f61cb',
     messagingSenderId: '890641607442',
     projectId: 'application-mapollege',
     storageBucket: 'application-mapollege.firebasestorage.app',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD4B0yPaM5YFGT8Hm1IYZaH8K4NI79o1xw',
-    appId: '1:890641607442:ios:343b42433fd5cd9a1f61cb',
-    messagingSenderId: '890641607442',
-    projectId: 'application-mapollege',
-    storageBucket: 'application-mapollege.firebasestorage.app',
-    iosClientId: '890641607442-74fhfeggej670v0gbgootpf9dsko0nsu.apps.googleusercontent.com',
-    iosBundleId: 'com.example.applicationMapollege',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD4B0yPaM5YFGT8Hm1IYZaH8K4NI79o1xw',
-    appId: '1:890641607442:ios:343b42433fd5cd9a1f61cb',
-    messagingSenderId: '890641607442',
-    projectId: 'application-mapollege',
-    storageBucket: 'application-mapollege.firebasestorage.app',
-    iosClientId: '890641607442-74fhfeggej670v0gbgootpf9dsko0nsu.apps.googleusercontent.com',
-    iosBundleId: 'com.example.applicationMapollege',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBhV10xRnYqrOgMd18nFllYQbFWCeuLA1o',
-    appId: '1:890641607442:web:c8d911eefd9126cc1f61cb',
-    messagingSenderId: '890641607442',
-    projectId: 'application-mapollege',
-    authDomain: 'application-mapollege.firebaseapp.com',
-    storageBucket: 'application-mapollege.firebasestorage.app',
-    measurementId: 'G-S733HJN86B',
   );
 }

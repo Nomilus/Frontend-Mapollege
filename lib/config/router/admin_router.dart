@@ -1,7 +1,7 @@
-import 'package:application_mapollege/config/middlewares/admin_middleware.dart';
-import 'package:application_mapollege/view/presentation/admin/dashboard_screen/controller/dashboard_controller.dart';
-import 'package:application_mapollege/view/presentation/admin/dashboard_screen/screen/dashboard_screen.dart';
+import 'package:mapollege/config/middlewares/admin_middleware.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/view/presentation/admin/dashboard_screen/controller/dashboard_controller.dart';
+import 'package:mapollege/view/presentation/admin/dashboard_screen/screen/dashboard_screen.dart';
 
 class AdminPath {
   String get dashboard => "/admin/dashboard";

@@ -1,12 +1,12 @@
-import 'package:application_mapollege/config/theme/custom/theme_appbar.dart';
-import 'package:application_mapollege/config/theme/custom/theme_button.dart';
-import 'package:application_mapollege/config/theme/custom/theme_color.dart';
-import 'package:application_mapollege/config/theme/custom/theme_font.dart';
-import 'package:application_mapollege/config/theme/custom/theme_input.dart';
-import 'package:application_mapollege/config/theme/custom/theme_progress.dart';
-import 'package:application_mapollege/config/theme/custom/theme_searchbar.dart';
+import 'package:mapollege/config/theme/custom/theme_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mapollege/config/theme/custom/theme_button.dart';
+import 'package:mapollege/config/theme/custom/theme_color.dart';
+import 'package:mapollege/config/theme/custom/theme_font.dart';
+import 'package:mapollege/config/theme/custom/theme_input.dart';
+import 'package:mapollege/config/theme/custom/theme_progress.dart';
+import 'package:mapollege/config/theme/custom/theme_searchbar.dart';
 
 class ThemeApp {
   ThemeApp() : _themeColor = ThemeColor(), _themeFont = const ThemeFont();

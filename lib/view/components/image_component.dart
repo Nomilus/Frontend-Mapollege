@@ -1,7 +1,7 @@
-import 'package:application_mapollege/core/model/image_model.dart';
-import 'package:application_mapollege/core/utility/dialog_utility.dart';
+import 'package:mapollege/core/model/image_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mapollege/core/utility/dialog_utility.dart';
 
 class ImageComponent extends StatelessWidget {
   const ImageComponent({super.key, required this.images, required this.theme});

@@ -1,6 +1,6 @@
-import 'package:application_mapollege/core/model/college/management_model.dart';
-import 'package:application_mapollege/core/model/image_model.dart';
-import 'package:application_mapollege/core/model/people/person_model.dart';
+import 'package:mapollege/core/model/college/management_model.dart';
+import 'package:mapollege/core/model/image_model.dart';
+import 'package:mapollege/core/model/people/person_model.dart';
 
 class CollegeModel {
   final String id;

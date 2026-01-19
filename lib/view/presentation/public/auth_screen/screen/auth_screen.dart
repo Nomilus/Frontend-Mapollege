@@ -1,11 +1,11 @@
 import 'dart:ui';
 
-import 'package:application_mapollege/config/router/routes.dart';
-import 'package:application_mapollege/view/presentation/public/auth_screen/controller/auth_controller.dart';
+import 'package:mapollege/config/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/view/presentation/public/auth_screen/controller/auth_controller.dart';
 
 class AuthScreen extends GetView<AuthController> {
   const AuthScreen({super.key});

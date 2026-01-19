@@ -1,7 +1,7 @@
-import 'package:application_mapollege/core/model/people/user_model.dart';
-import 'package:application_mapollege/core/service/auth_service.dart';
+import 'package:mapollege/core/model/people/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/core/service/auth_service.dart';
 
 class HomeController extends GetxController {
   final AuthService _authService = Get.find<AuthService>();

@@ -1,15 +1,15 @@
-import 'package:application_mapollege/view/presentation/public/auth_screen/controller/auth_controller.dart';
-import 'package:application_mapollege/view/presentation/public/auth_screen/screen/auth_screen.dart';
-import 'package:application_mapollege/view/presentation/public/home_screen/controller/panel_controller.dart';
-import 'package:application_mapollege/view/presentation/public/home_screen/controller/home_controller.dart';
-import 'package:application_mapollege/view/presentation/public/home_screen/controller/map_controller.dart';
-import 'package:application_mapollege/view/presentation/public/home_screen/screen/home_screen.dart';
-import 'package:application_mapollege/view/presentation/public/room_screen/controller/room_controller.dart';
-import 'package:application_mapollege/view/presentation/public/room_screen/screen/room_screen.dart';
-import 'package:application_mapollege/view/presentation/public/scan_screen/controller/scan_controller.dart';
-import 'package:application_mapollege/view/presentation/public/scan_screen/screen/scan_screen.dart';
-import 'package:application_mapollege/view/presentation/public/splash_screen/controller/splash_controller.dart';
-import 'package:application_mapollege/view/presentation/public/splash_screen/screen/splash_screen.dart';
+import 'package:mapollege/view/presentation/public/auth_screen/controller/auth_controller.dart';
+import 'package:mapollege/view/presentation/public/auth_screen/screen/auth_screen.dart';
+import 'package:mapollege/view/presentation/public/home_screen/controller/panel_controller.dart';
+import 'package:mapollege/view/presentation/public/home_screen/controller/home_controller.dart';
+import 'package:mapollege/view/presentation/public/home_screen/controller/map_controller.dart';
+import 'package:mapollege/view/presentation/public/home_screen/screen/home_screen.dart';
+import 'package:mapollege/view/presentation/public/room_screen/controller/room_controller.dart';
+import 'package:mapollege/view/presentation/public/room_screen/screen/room_screen.dart';
+import 'package:mapollege/view/presentation/public/scan_screen/controller/scan_controller.dart';
+import 'package:mapollege/view/presentation/public/scan_screen/screen/scan_screen.dart';
+import 'package:mapollege/view/presentation/public/splash_screen/controller/splash_controller.dart';
+import 'package:mapollege/view/presentation/public/splash_screen/screen/splash_screen.dart';
 import 'package:get/get.dart';
 
 class PublicPath {

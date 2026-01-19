@@ -1,12 +1,12 @@
-import 'package:application_mapollege/config/router/routes.dart';
-import 'package:application_mapollege/view/components/search_component.dart';
-import 'package:application_mapollege/view/presentation/public/home_screen/controller/home_controller.dart';
-import 'package:application_mapollege/view/presentation/public/home_screen/controller/map_controller.dart';
-import 'package:application_mapollege/view/presentation/public/home_screen/widget/panel_widget.dart';
-import 'package:application_mapollege/view/presentation/public/home_screen/widget/map_widget.dart';
+import 'package:mapollege/config/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/view/components/search_component.dart';
+import 'package:mapollege/view/presentation/public/home_screen/controller/home_controller.dart';
+import 'package:mapollege/view/presentation/public/home_screen/controller/map_controller.dart';
+import 'package:mapollege/view/presentation/public/home_screen/widget/map_widget.dart';
+import 'package:mapollege/view/presentation/public/home_screen/widget/panel_widget.dart';
 
 class HomeScreen extends GetView<HomeController> {
   HomeScreen({super.key});

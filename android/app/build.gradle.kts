@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.application_mapollege"
+    namespace = "com.nomilus.mapollege"
     compileSdk = 36
     ndkVersion = "27.0.12077973"
 
@@ -20,16 +20,27 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.application_mapollege"
+        applicationId = "com.nomilus.mapollege"
         minSdk = 23
         targetSdk = 36
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+        }
+    }
+
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }

@@ -1,9 +1,9 @@
-import 'package:application_mapollege/config/router/routes.dart';
-import 'package:application_mapollege/core/model/people/user_model.dart';
-import 'package:application_mapollege/core/service/auth_service.dart';
-import 'package:application_mapollege/core/service/theme_service.dart';
-import 'package:application_mapollege/core/utility/overlay_utility.dart';
+import 'package:mapollege/config/router/routes.dart';
+import 'package:mapollege/core/model/people/user_model.dart';
+import 'package:mapollege/core/service/auth_service.dart';
+import 'package:mapollege/core/service/theme_service.dart';
 import 'package:get/get.dart';
+import 'package:mapollege/core/utility/overlay_utility.dart';
 
 class ProfileController extends GetxController {
   final ThemeService _themeService = Get.find<ThemeService>();

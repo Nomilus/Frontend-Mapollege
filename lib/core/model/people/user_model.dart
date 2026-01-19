@@ -1,5 +1,5 @@
-import 'package:application_mapollege/core/enum/role_enum.dart';
-import 'package:application_mapollege/core/model/people/notification_model.dart';
+import 'package:mapollege/core/enum/role_enum.dart';
+import 'package:mapollege/core/model/people/notification_model.dart';
 
 class UserModel {
   final String id;

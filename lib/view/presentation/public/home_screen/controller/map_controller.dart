@@ -1,10 +1,10 @@
-import 'package:application_mapollege/core/service/location_service.dart';
-import 'package:application_mapollege/core/utility/overlay_utility.dart';
-import 'package:application_mapollege/core/utility/snackbar_utility.dart';
+import 'package:mapollege/core/service/location_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mapollege/core/utility/overlay_utility.dart';
+import 'package:mapollege/core/utility/snackbar_utility.dart';
 
 class MapController extends GetxController {
   final LocationService _locationService = Get.find<LocationService>();
