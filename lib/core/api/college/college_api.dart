@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:mapollege/core/model/college/college_model.dart';
 import 'package:mapollege/core/service/dio_service.dart';
 import 'package:mapollege/core/utility/error_utility.dart';
-import 'package:mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/response_model.dart';
 
 class CollegeApi {
   CollegeApi(this._dio);
@@ -10,7 +10,7 @@ class CollegeApi {
   final DioService _dio;
   final String requestPath = '/college';
 
-  Future<ResponseUtility<CollegeModel>?> createCollege({
+  Future<ResponseModel<CollegeModel>?> createCollege({
     required String name,
     required String address,
     String? description,
@@ -34,14 +34,14 @@ class CollegeApi {
 
       final response = await _dio.dio.post(requestPath, data: formData);
 
-      return ResponseUtility.fromModel(CollegeModel.fromModel, response.data);
+      return ResponseModel.fromModel(CollegeModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<CollegeModel>?> updateCollege({
+  Future<ResponseModel<CollegeModel>?> updateCollege({
     required String id,
     required String name,
     required String address,
@@ -67,44 +67,40 @@ class CollegeApi {
 
       final response = await _dio.dio.put(requestPath, data: formData);
 
-      return ResponseUtility.fromModel(CollegeModel.fromModel, response.data);
+      return ResponseModel.fromModel(CollegeModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<List<CollegeModel>>?> getAllCollege() async {
+  Future<ResponseModel<List<CollegeModel>>?> getAllCollege() async {
     try {
       final response = await _dio.dio.get(requestPath);
 
-      return ResponseUtility<List<CollegeModel>>.fromList(
-        CollegeModel.fromModel,
-        response.data,
-      );
+      return ResponseModel.fromList(CollegeModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<CollegeModel>?> getCollegeById({
+  Future<ResponseModel<CollegeModel>?> getCollegeById({
     required String id,
   }) async {
     try {
       final response = await _dio.dio.get('$requestPath/$id');
-
-      return ResponseUtility.fromModel(CollegeModel.fromModel, response.data);
+      return ResponseModel.fromModel(CollegeModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<bool>?> deleteCollege({required String id}) async {
+  Future<ResponseModel<bool>?> deleteCollege({required String id}) async {
     try {
       final response = await _dio.dio.delete('$requestPath/$id');
-      return ResponseUtility<bool>.fromRaw(response.data);
+      return ResponseModel.fromRaw<bool>(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;

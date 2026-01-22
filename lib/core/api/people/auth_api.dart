@@ -2,7 +2,7 @@ import 'package:mapollege/core/model/people/token_model.dart';
 import 'package:dio/dio.dart';
 import 'package:mapollege/core/service/dio_service.dart';
 import 'package:mapollege/core/utility/error_utility.dart';
-import 'package:mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/response_model.dart';
 
 class AuthApi {
   AuthApi(this._dio);
@@ -10,7 +10,7 @@ class AuthApi {
   final DioService _dio;
   final String requestPath = '/auth';
 
-  Future<ResponseUtility<TokenModel>?> verifyToken({
+  Future<ResponseModel<TokenModel>?> verifyToken({
     required String firebaseToken,
   }) async {
     try {
@@ -18,14 +18,14 @@ class AuthApi {
         '$requestPath/verify',
         data: {"token": firebaseToken},
       );
-      return ResponseUtility.fromModel(TokenModel.fromModel, response.data);
+      return ResponseModel.fromModel(TokenModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<TokenModel>?> refreshToken({
+  Future<ResponseModel<TokenModel>?> refreshToken({
     required String refreshToken,
   }) async {
     try {
@@ -33,7 +33,7 @@ class AuthApi {
         '$requestPath/refresh',
         data: {"token": refreshToken},
       );
-      return ResponseUtility.fromModel(TokenModel.fromModel, response.data);
+      return ResponseModel.fromModel(TokenModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;

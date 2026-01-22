@@ -3,7 +3,7 @@ import 'package:mapollege/core/model/section/member_model.dart';
 import 'package:mapollege/core/model/section/work_model.dart';
 import 'package:mapollege/core/service/dio_service.dart';
 import 'package:mapollege/core/utility/error_utility.dart';
-import 'package:mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/response_model.dart';
 import 'package:dio/dio.dart';
 
 class WorkApi {
@@ -12,7 +12,7 @@ class WorkApi {
   final DioService _dio;
   final String requestPath = '/work';
 
-  Future<ResponseUtility<WorkModel>?> createWork({
+  Future<ResponseModel<WorkModel>?> createWork({
     required String title,
     required String managementId,
   }) async {
@@ -21,14 +21,14 @@ class WorkApi {
         requestPath,
         data: {"title": title, "managementId": managementId},
       );
-      return ResponseUtility.fromModel(WorkModel.fromModel, response.data);
+      return ResponseModel.fromModel(WorkModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<WorkModel>?> updateWork({
+  Future<ResponseModel<WorkModel>?> updateWork({
     required String id,
     required String title,
     required String managementId,
@@ -38,47 +38,44 @@ class WorkApi {
         requestPath,
         data: {"id": id, "title": title, "managementId": managementId},
       );
-      return ResponseUtility.fromModel(WorkModel.fromModel, response.data);
+      return ResponseModel.fromModel(WorkModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<List<WorkModel>>?> getAllWork() async {
+  Future<ResponseModel<List<WorkModel>>?> getAllWork() async {
     try {
       final response = await _dio.dio.get(requestPath);
-      return ResponseUtility<List<WorkModel>>.fromList(
-        WorkModel.fromModel,
-        response.data,
-      );
+      return ResponseModel.fromList(WorkModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<WorkModel>?> getWorkById({required String id}) async {
+  Future<ResponseModel<WorkModel>?> getWorkById({required String id}) async {
     try {
       final response = await _dio.dio.get('$requestPath/$id');
-      return ResponseUtility.fromModel(WorkModel.fromModel, response.data);
+      return ResponseModel.fromModel(WorkModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<bool>?> deleteWork({required String id}) async {
+  Future<ResponseModel<bool>?> deleteWork({required String id}) async {
     try {
       final response = await _dio.dio.delete('$requestPath/$id');
-      return ResponseUtility.fromRaw(response.data);
+      return ResponseModel.fromRaw(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<WorkModel>?> addMember({
+  Future<ResponseModel<WorkModel>?> addMember({
     required String workId,
     required SectionMember<WorkEnum> section,
   }) async {
@@ -91,14 +88,14 @@ class WorkApi {
           ],
         },
       );
-      return ResponseUtility.fromModel(WorkModel.fromModel, response.data);
+      return ResponseModel.fromModel(WorkModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<WorkModel>?> addListMember({
+  Future<ResponseModel<WorkModel>?> addListMember({
     required String workId,
     required List<SectionMember<WorkEnum>> sections,
   }) async {
@@ -116,20 +113,20 @@ class WorkApi {
             },
         ],
       );
-      return ResponseUtility.fromModel(WorkModel.fromModel, response.data);
+      return ResponseModel.fromModel(WorkModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<bool>?> removeMember({
+  Future<ResponseModel<bool>?> removeMember({
     required String workId,
     required String personId,
   }) async {
     try {
       final response = await _dio.dio.delete('$requestPath/$workId/$personId');
-      return ResponseUtility<bool>.fromRaw(response.data);
+      return ResponseModel.fromRaw<bool>(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;

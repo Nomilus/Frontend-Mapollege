@@ -1,4 +1,4 @@
-# mapollege
+# Mapollege
 
 A new Flutter project.
 

@@ -104,7 +104,7 @@ class NotificationScreen extends GetView<NotificationController> {
             ),
             const SizedBox(height: 4),
             Text(
-              "${item.createdAt.day}/${item.createdAt.month}/${item.createdAt.year} ${item.createdAt.hour}:${item.createdAt.minute}",
+              "${item.createdAt?.day}/${item.createdAt?.month}/${item.createdAt?.year} ${item.createdAt?.hour}:${item.createdAt?.minute}",
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),

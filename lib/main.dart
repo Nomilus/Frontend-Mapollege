@@ -13,22 +13,27 @@ import 'package:mapollege/config/theme/app_theme.dart';
 import 'package:mapollege/firebase_options.dart';
 
 @pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-}
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await _initialize();
+  await dotenv.load(fileName: ".env");
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await Register().init;
   runApp(const MainApp());
 }
 
-Future<void> _initialize() async {
-  await dotenv.load(fileName: ".env");
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await Permission().init;
-  await Register().init;
+class MainService extends GetxService {
+  @override
+  void onInit() {
+    super.onInit();
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
+    await Permission().init;
+  }
 }
 
 class MainApp extends StatelessWidget {
@@ -36,6 +41,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(MainService(), permanent: true);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.rightToLeft,
@@ -47,7 +53,7 @@ class MainApp extends StatelessWidget {
         ...PrivateRouter().init,
         ...PublicRouter().init,
       ],
-      initialRoute: Routes.public.splash,
+      initialRoute: Routes.public.home,
     );
   }
 }

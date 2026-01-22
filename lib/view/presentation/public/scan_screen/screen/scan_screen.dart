@@ -1,4 +1,4 @@
-import 'package:application_mapollege/view/presentation/public/scan_screen/controller/scan_controller.dart';
+import 'package:mapollege/view/presentation/public/scan_screen/controller/scan_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';

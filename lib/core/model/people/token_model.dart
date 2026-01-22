@@ -6,8 +6,8 @@ class TokenModel {
 
   factory TokenModel.fromModel(Map<String, dynamic> json) {
     return TokenModel(
-      accessToken: json['accessToken'] as String,
-      refreshToken: json['refreshToken'] as String,
+      accessToken: json['accessToken'] as String? ?? '',
+      refreshToken: json['refreshToken'] as String? ?? '',
     );
   }
 }

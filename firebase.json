@@ -1,1 +1,21 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"application-mapollege","appId":"1:890641607442:android:a2939b840f3acca51f61cb","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"application-mapollege","configurations":{"android":"1:890641607442:android:a2939b840f3acca51f61cb"}}}}}}
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "application-mapollege",
+                    "appId": "1:890641607442:android:a1ffee1e8fd200a71f61cb",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "application-mapollege",
+                    "configurations": {
+                        "android": "1:890641607442:android:a1ffee1e8fd200a71f61cb"
+                    }
+                }
+            }
+        }
+    }
+}

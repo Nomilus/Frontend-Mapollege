@@ -1,4 +1,5 @@
-import 'package:application_mapollege/core/utility/snackbar_utility.dart';
+import 'package:flutter/foundation.dart';
+import 'package:mapollege/core/utility/snackbar_utility.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -8,6 +9,7 @@ class ErrorUtility {
     GoogleSignInException e, {
     bool showCancelMessage = true,
   }) {
+    debugPrint('Google error ${e.toString()}');
     switch (e.code) {
       case GoogleSignInExceptionCode.canceled:
         if (showCancelMessage) {
@@ -20,7 +22,8 @@ class ErrorUtility {
       case GoogleSignInExceptionCode.unknownError:
         SnackbarUtility.error(
           title: 'เกิดข้อผิดพลาด',
-          message: 'ไม่สามารถเข้าสู่ระบบด้วย Google ได้ กรุณาลองใหม่อีกครั้ง',
+          // message: 'ไม่สามารถเข้าสู่ระบบด้วย Google ได้ กรุณาลองใหม่อีกครั้ง',
+          message: '${e.description}',
         );
         break;
       default:
@@ -109,7 +112,8 @@ class ErrorUtility {
           default:
             SnackbarUtility.error(
               title: 'เกิดข้อผิดพลาด',
-              message: 'เกิดข้อผิดพลาดในการเชื่อมต่อ (รหัส: ${e.response?.statusCode})',
+              message:
+                  'เกิดข้อผิดพลาดในการเชื่อมต่อ (รหัส: ${e.response?.statusCode})',
             );
             break;
         }

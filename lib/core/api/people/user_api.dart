@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:mapollege/core/model/people/user_model.dart';
 import 'package:mapollege/core/service/dio_service.dart';
 import 'package:mapollege/core/utility/error_utility.dart';
-import 'package:mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/response_model.dart';
 
 class UserApi {
   UserApi(this._dio);
@@ -11,37 +11,37 @@ class UserApi {
   final DioService _dio;
   final String requestPath = '/user';
 
-  Future<ResponseUtility<UserModel>?> getProfile() async {
+  Future<ResponseModel<UserModel>?> getProfile() async {
     try {
       final response = await _dio.dio.get('$requestPath/profile');
-      return ResponseUtility.fromModel(UserModel.fromModel, response.data);
+      return ResponseModel.fromModel(UserModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<UserModel>?> getUserById({required String id}) async {
+  Future<ResponseModel<UserModel>?> getUserById({required String id}) async {
     try {
       final response = await _dio.dio.get('$requestPath/$id');
-      return ResponseUtility.fromModel(UserModel.fromModel, response.data);
+      return ResponseModel.fromModel(UserModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<List<UserModel>>?> getAllUsers() async {
+  Future<ResponseModel<List<UserModel>>?> getAllUsers() async {
     try {
       final response = await _dio.dio.get(requestPath);
-      return ResponseUtility.fromList(UserModel.fromModel, response.data);
+      return ResponseModel.fromList(UserModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<UserModel>?> updateRole({
+  Future<ResponseModel<UserModel>?> updateRole({
     required String id,
     required RoleEnum role,
   }) async {
@@ -50,17 +50,17 @@ class UserApi {
         '$requestPath/$id',
         queryParameters: {"role": role.value},
       );
-      return ResponseUtility.fromModel(UserModel.fromModel, response.data);
+      return ResponseModel.fromModel(UserModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<bool>?> deleteUser({required String id}) async {
+  Future<ResponseModel<bool>?> deleteUser({required String id}) async {
     try {
       final response = await _dio.dio.delete('$requestPath/$id');
-      return ResponseUtility.fromRaw(response.data);
+      return ResponseModel.fromRaw(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;

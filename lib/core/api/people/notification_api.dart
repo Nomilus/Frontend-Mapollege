@@ -1,7 +1,7 @@
 import 'package:mapollege/core/model/people/notification_model.dart';
 import 'package:mapollege/core/service/dio_service.dart';
 import 'package:mapollege/core/utility/error_utility.dart';
-import 'package:mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/response_model.dart';
 import 'package:dio/dio.dart';
 
 class NotificationApi {
@@ -10,7 +10,7 @@ class NotificationApi {
   final DioService _dio;
   final String requestPath = '/notification';
 
-  Future<ResponseUtility<bool>?> createNotification({
+  Future<ResponseModel<bool>?> createNotification({
     required String title,
     required String message,
     bool isRead = false,
@@ -20,14 +20,14 @@ class NotificationApi {
         requestPath,
         data: {"title": title, "message": message, "isRead": isRead},
       );
-      return ResponseUtility.fromRaw(response.data);
+      return ResponseModel.fromRaw(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<NotificationModel>?> updateReadStatus({
+  Future<ResponseModel<NotificationModel>?> updateReadStatus({
     required String id,
     required bool isRead,
   }) async {
@@ -36,21 +36,7 @@ class NotificationApi {
         '$requestPath/$id',
         queryParameters: {"read": isRead},
       );
-      return ResponseUtility.fromModel(
-        NotificationModel.fromModel,
-        response.data,
-      );
-    } on DioException catch (e) {
-      ErrorUtility.handleDioException(e);
-      return null;
-    }
-  }
-  
-  Future<ResponseUtility<List<NotificationModel>>?>
-  getAllNotifications() async {
-    try {
-      final response = await _dio.dio.get(requestPath);
-      return ResponseUtility.fromList(
+      return ResponseModel.fromModel(
         NotificationModel.fromModel,
         response.data,
       );
@@ -60,12 +46,20 @@ class NotificationApi {
     }
   }
 
-  Future<ResponseUtility<bool>?> deleteNotification({
-    required String id,
-  }) async {
+  Future<ResponseModel<List<NotificationModel>>?> getAllNotifications() async {
+    try {
+      final response = await _dio.dio.get(requestPath);
+      return ResponseModel.fromList(NotificationModel.fromModel, response.data);
+    } on DioException catch (e) {
+      ErrorUtility.handleDioException(e);
+      return null;
+    }
+  }
+
+  Future<ResponseModel<bool>?> deleteNotification({required String id}) async {
     try {
       final response = await _dio.dio.delete('$requestPath/$id');
-      return ResponseUtility.fromRaw(response.data);
+      return ResponseModel.fromRaw(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;

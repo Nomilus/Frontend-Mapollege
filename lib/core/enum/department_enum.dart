@@ -1,4 +1,4 @@
-import 'package:application_mapollege/core/model/section/member_model.dart';
+import 'package:mapollege/core/model/section/member_model.dart';
 
 enum DepartmentEnum implements Position {
   departmentHead('DEPARTMENT_HEAD', 'หัวหน้าแผนก'),

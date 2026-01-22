@@ -6,12 +6,12 @@ class DepartmentModel {
   final String id;
   final String title;
   final String website;
-  final ImageModel image;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final ImageModel? image;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final List<MemberModel<DepartmentEnum>> members;
 
-  DepartmentModel({
+  DepartmentModel._({
     required this.id,
     required this.title,
     required this.website,
@@ -22,13 +22,13 @@ class DepartmentModel {
   });
 
   factory DepartmentModel.fromModel(Map<String, dynamic> json) {
-    return DepartmentModel(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      website: json['website'] as String,
-      image: ImageModel.fromModel(json['image']),
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+    return DepartmentModel._(
+      id: json['id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      website: json['website'] as String? ?? '',
+      image: json['image'] != null ? ImageModel.fromModel(json['image']) : null,
+      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
+      updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? ''),
       members: (json['members'] as List? ?? [])
           .map<MemberModel<DepartmentEnum>>(
             (item) =>

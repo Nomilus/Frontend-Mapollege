@@ -1,4 +1,4 @@
-import 'package:application_mapollege/view/presentation/public/splash_screen/controller/splash_controller.dart';
+import 'package:mapollege/view/presentation/public/splash_screen/controller/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

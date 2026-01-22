@@ -6,9 +6,9 @@ class WorkModel {
   final String id;
   final String title;
   final String website;
-  final ImageModel image;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final ImageModel? image;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final List<MemberModel<WorkEnum>> members;
 
   WorkModel({
@@ -23,12 +23,12 @@ class WorkModel {
 
   factory WorkModel.fromModel(Map<String, dynamic> json) {
     return WorkModel(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      website: json['website'] as String,
-      image: ImageModel.fromModel(json['image']),
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+      id: json['id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      website: json['website'] as String? ?? '',
+      image: json['image'] != null ? ImageModel.fromModel(json['image']) : null,
+      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
+      updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? ''),
       members: (json['members'] as List? ?? [])
           .map<MemberModel<WorkEnum>>(
             (item) => MemberModel.fromModel(item, WorkEnum.unknown.fromValue),

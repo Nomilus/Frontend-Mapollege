@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
@@ -20,14 +17,6 @@ class DioService extends GetxService {
         connectTimeout: const Duration(seconds: 15),
         headers: {'ngrok-skip-browser-warning': 'true'},
       ),
-    );
-
-    dio.httpClientAdapter = IOHttpClientAdapter(
-      createHttpClient: () {
-        final client = HttpClient();
-        client.connectionTimeout = const Duration(seconds: 15);
-        return client;
-      },
     );
 
     dio.interceptors.add(

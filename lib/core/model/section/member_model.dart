@@ -1,4 +1,4 @@
-import 'package:application_mapollege/core/model/image_model.dart';
+import 'package:mapollege/core/model/image_model.dart';
 
 abstract class Position<T extends Enum> {
   String get value;
@@ -12,8 +12,8 @@ class MemberModel<T extends Position> {
   final String firstName;
   final String lastName;
   final ImageModel? image;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final List<T> positions;
 
   MemberModel({
@@ -32,13 +32,13 @@ class MemberModel<T extends Position> {
     T Function(String) parser,
   ) {
     return MemberModel<T>(
-      id: json['id'] as String,
-      prefix: json['prefix'] as String,
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
-      image: ImageModel.fromModel(json['image']),
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+      id: json['id'] as String? ?? '',
+      prefix: json['prefix'] as String? ?? '',
+      firstName: json['firstName'] as String? ?? '',
+      lastName: json['lastName'] as String? ?? '',
+      image: ImageModel.fromModel(json['image'] as Map<String, dynamic>? ?? {}),
+      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
+      updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? ''),
       positions: (json['positions'] as List? ?? [])
           .map<T>((item) => parser(item.toString()))
           .toList(),

@@ -1,9 +1,9 @@
 import 'package:mapollege/view/presentation/public/auth_screen/controller/auth_controller.dart';
 import 'package:mapollege/view/presentation/public/auth_screen/screen/auth_screen.dart';
-import 'package:mapollege/view/presentation/public/home_screen/controller/panel_controller.dart';
 import 'package:mapollege/view/presentation/public/home_screen/controller/home_controller.dart';
-import 'package:mapollege/view/presentation/public/home_screen/controller/map_controller.dart';
+import 'package:mapollege/view/presentation/public/home_screen/widget/map/map_controller.dart';
 import 'package:mapollege/view/presentation/public/home_screen/screen/home_screen.dart';
+import 'package:mapollege/view/presentation/public/home_screen/widget/panel/panel_controller.dart';
 import 'package:mapollege/view/presentation/public/room_screen/controller/room_controller.dart';
 import 'package:mapollege/view/presentation/public/room_screen/screen/room_screen.dart';
 import 'package:mapollege/view/presentation/public/scan_screen/controller/scan_controller.dart';

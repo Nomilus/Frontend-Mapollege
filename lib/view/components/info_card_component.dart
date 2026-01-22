@@ -21,6 +21,13 @@ class InfoCardComponent extends StatelessWidget {
     ThemeData theme = Theme.of(context);
 
     return Card(
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          width: 1,
+          color: theme.colorScheme.surfaceContainerHigh,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -67,9 +74,19 @@ class InfoSectionComponent extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       child: ExpansionTile(
         collapsedShape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            color: theme.colorScheme.surfaceContainerHigh,
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            color: theme.colorScheme.surfaceContainerHigh,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
         leading: logo != null
             ? CircleAvatar(
                 radius: 20,

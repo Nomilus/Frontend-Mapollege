@@ -2,6 +2,7 @@ import 'package:mapollege/core/model/building/room_model.dart';
 import 'package:mapollege/core/model/image_model.dart';
 import 'package:mapollege/core/model/section/department_model.dart';
 import 'package:mapollege/core/model/section/work_model.dart';
+
 class BuildingModel {
   final String id;
   final String name;
@@ -11,8 +12,8 @@ class BuildingModel {
   final double longitude;
   final int floorCount;
   final bool isActive;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final List<ImageModel> images;
   final List<RoomModel> rooms;
   final List<DepartmentModel> departments;
@@ -37,16 +38,16 @@ class BuildingModel {
 
   factory BuildingModel.fromModel(Map<String, dynamic> json) {
     return BuildingModel(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      address: json['address'] as String,
-      description: json['description'] as String,
-      latitude: json['latitude'] as double,
-      longitude: json['longitude'] as double,
-      floorCount: json['floorCount'] as int,
-      isActive: json['isActive'] as bool,
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+      id: json['id'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      address: json['address'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      latitude: json['latitude'] as double? ?? 0.0,
+      longitude: json['longitude'] as double? ?? 0.0,
+      floorCount: json['floorCount'] as int? ?? 0,
+      isActive: json['isActive'] as bool? ?? false,
+      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
+      updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? ''),
       images: (json['images'] as List? ?? [])
           .map<ImageModel>((item) => ImageModel.fromModel(item))
           .toList(),

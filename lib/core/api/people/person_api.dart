@@ -1,7 +1,7 @@
 import 'package:mapollege/core/model/people/person_model.dart';
 import 'package:mapollege/core/service/dio_service.dart';
 import 'package:mapollege/core/utility/error_utility.dart';
-import 'package:mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/response_model.dart';
 import 'package:dio/dio.dart';
 
 class PersonApi {
@@ -10,7 +10,7 @@ class PersonApi {
   final DioService _dio;
   final String requestPath = '/college/person';
 
-  Future<ResponseUtility<PersonModel>?> createPerson({
+  Future<ResponseModel<PersonModel>?> createPerson({
     required String prefix,
     required String firstName,
     required String lastName,
@@ -26,14 +26,14 @@ class PersonApi {
 
       final response = await _dio.dio.post(requestPath, data: formData);
 
-      return ResponseUtility.fromModel(PersonModel.fromModel, response.data);
+      return ResponseModel.fromModel(PersonModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<PersonModel>?> updatePerson({
+  Future<ResponseModel<PersonModel>?> updatePerson({
     required String id,
     required String prefix,
     required String firstName,
@@ -51,39 +51,39 @@ class PersonApi {
 
       final response = await _dio.dio.put(requestPath, data: formData);
 
-      return ResponseUtility.fromModel(PersonModel.fromModel, response.data);
+      return ResponseModel.fromModel(PersonModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<List<PersonModel>>?> getPersonById({
+  Future<ResponseModel<List<PersonModel>>?> getPersonById({
     required String id,
   }) async {
     try {
       final response = await _dio.dio.get('$requestPath/$id');
-      return ResponseUtility.fromList(PersonModel.fromModel, response.data);
+      return ResponseModel.fromList(PersonModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<List<PersonModel>>?> getAllPerson() async {
+  Future<ResponseModel<List<PersonModel>>?> getAllPerson() async {
     try {
       final response = await _dio.dio.get(requestPath);
-      return ResponseUtility.fromList(PersonModel.fromModel, response.data);
+      return ResponseModel.fromList(PersonModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<bool>?> deletePerson({required String id}) async {
+  Future<ResponseModel<bool>?> deletePerson({required String id}) async {
     try {
       final response = await _dio.dio.delete('$requestPath/$id');
-      return ResponseUtility.fromRaw(response.data);
+      return ResponseModel.fromRaw(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;

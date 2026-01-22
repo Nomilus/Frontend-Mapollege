@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:mapollege/core/model/college/management_model.dart';
 import 'package:mapollege/core/service/dio_service.dart';
 import 'package:mapollege/core/utility/error_utility.dart';
-import 'package:mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/response_model.dart';
 
 class ManagementApi {
   ManagementApi(this._dio);
@@ -10,7 +10,7 @@ class ManagementApi {
   final DioService _dio;
   final String requestPath = '/college/management';
 
-  Future<ResponseUtility<ManagementModel>?> createManagement({
+  Future<ResponseModel<ManagementModel>?> createManagement({
     required String title,
     required String collegeId,
     required String deputyDirectorId,
@@ -25,17 +25,14 @@ class ManagementApi {
         },
       );
 
-      return ResponseUtility.fromModel(
-        ManagementModel.fromModel,
-        response.data,
-      );
+      return ResponseModel.fromModel(ManagementModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<ManagementModel>?> updateManagement({
+  Future<ResponseModel<ManagementModel>?> updateManagement({
     required String id,
     required String title,
     required String collegeId,
@@ -52,48 +49,42 @@ class ManagementApi {
         },
       );
 
-      return ResponseUtility.fromModel(
-        ManagementModel.fromModel,
-        response.data,
-      );
+      return ResponseModel.fromModel(ManagementModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<ManagementModel>?> getManagementById({
+  Future<ResponseModel<ManagementModel>?> getManagementById({
     required String id,
   }) async {
     try {
       final response = await _dio.dio.get('$requestPath/$id');
 
-      return ResponseUtility.fromModel(
-        ManagementModel.fromModel,
-        response.data,
-      );
+      return ResponseModel.fromModel(ManagementModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<List<ManagementModel>>?> getAllManagement() async {
+  Future<ResponseModel<List<ManagementModel>>?> getAllManagement() async {
     try {
       final response = await _dio.dio.get(requestPath);
 
-      return ResponseUtility.fromList(ManagementModel.fromModel, response.data);
+      return ResponseModel.fromList(ManagementModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<bool>?> deleteManagement({required String id}) async {
+  Future<ResponseModel<bool>?> deleteManagement({required String id}) async {
     try {
       final response = await _dio.dio.delete('$requestPath/$id');
 
-      return ResponseUtility.fromRaw(response.data);
+      return ResponseModel.fromRaw(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;

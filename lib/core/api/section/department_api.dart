@@ -3,7 +3,7 @@ import 'package:mapollege/core/model/section/department_model.dart';
 import 'package:mapollege/core/model/section/member_model.dart';
 import 'package:mapollege/core/service/dio_service.dart';
 import 'package:mapollege/core/utility/error_utility.dart';
-import 'package:mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/response_model.dart';
 import 'package:dio/dio.dart';
 
 class DepartmentApi {
@@ -12,7 +12,7 @@ class DepartmentApi {
   final DioService _dio;
   final String requestPath = '/college/department';
 
-  Future<ResponseUtility<DepartmentModel>?> createDepartment({
+  Future<ResponseModel<DepartmentModel>?> createDepartment({
     required String title,
     String? website,
     String? logoPath,
@@ -25,17 +25,14 @@ class DepartmentApi {
       });
 
       final response = await _dio.dio.post(requestPath, data: formData);
-      return ResponseUtility.fromModel(
-        DepartmentModel.fromModel,
-        response.data,
-      );
+      return ResponseModel.fromModel(DepartmentModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<DepartmentModel>?> updateDepartment({
+  Future<ResponseModel<DepartmentModel>?> updateDepartment({
     required String id,
     required String title,
     String? website,
@@ -50,52 +47,46 @@ class DepartmentApi {
       });
 
       final response = await _dio.dio.put(requestPath, data: formData);
-      return ResponseUtility.fromModel(
-        DepartmentModel.fromModel,
-        response.data,
-      );
+      return ResponseModel.fromModel(DepartmentModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<List<DepartmentModel>>?> getAllDepartment() async {
+  Future<ResponseModel<List<DepartmentModel>>?> getAllDepartment() async {
     try {
       final response = await _dio.dio.get(requestPath);
-      return ResponseUtility.fromList(DepartmentModel.fromModel, response.data);
+      return ResponseModel.fromList(DepartmentModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<DepartmentModel>?> getDepartmentById({
+  Future<ResponseModel<DepartmentModel>?> getDepartmentById({
     required String id,
   }) async {
     try {
       final response = await _dio.dio.get('$requestPath/$id');
-      return ResponseUtility.fromModel(
-        DepartmentModel.fromModel,
-        response.data,
-      );
+      return ResponseModel.fromModel(DepartmentModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<bool>?> deleteDepartment({required String id}) async {
+  Future<ResponseModel<bool>?> deleteDepartment({required String id}) async {
     try {
       final response = await _dio.dio.delete('$requestPath/$id');
-      return ResponseUtility.fromRaw(response.data);
+      return ResponseModel.fromRaw(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<DepartmentModel>?> addMember({
+  Future<ResponseModel<DepartmentModel>?> addMember({
     required String departmentId,
     required SectionMember<DepartmentEnum> section,
   }) async {
@@ -108,17 +99,14 @@ class DepartmentApi {
           ],
         },
       );
-      return ResponseUtility.fromModel(
-        DepartmentModel.fromModel,
-        response.data,
-      );
+      return ResponseModel.fromModel(DepartmentModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<DepartmentModel>?> addListMember({
+  Future<ResponseModel<DepartmentModel>?> addListMember({
     required String departmentId,
     required List<SectionMember<DepartmentEnum>> sections,
   }) async {
@@ -137,17 +125,14 @@ class DepartmentApi {
             },
         ],
       );
-      return ResponseUtility.fromModel(
-        DepartmentModel.fromModel,
-        response.data,
-      );
+      return ResponseModel.fromModel(DepartmentModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<bool>?> removeMember({
+  Future<ResponseModel<bool>?> removeMember({
     required String departmentId,
     required String personId,
   }) async {
@@ -155,7 +140,7 @@ class DepartmentApi {
       final response = await _dio.dio.delete(
         '$requestPath/$departmentId/$personId',
       );
-      return ResponseUtility<bool>.fromRaw(response.data);
+      return ResponseModel.fromRaw<bool>(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;

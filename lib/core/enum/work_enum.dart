@@ -1,4 +1,4 @@
-import 'package:application_mapollege/core/model/section/member_model.dart';
+import 'package:mapollege/core/model/section/member_model.dart';
 
 enum WorkEnum implements Position {
   sectionHead('SECTION_HEAD', 'หัวหน้างาน'),

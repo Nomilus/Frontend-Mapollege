@@ -7,8 +7,8 @@ class ManagementModel {
   final String title;
   final CollegeModel college;
   final PersonModel deputyDirector;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final List<WorkModel> works;
 
   ManagementModel({
@@ -23,12 +23,16 @@ class ManagementModel {
 
   factory ManagementModel.fromModel(Map<String, dynamic> json) {
     return ManagementModel(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      college: CollegeModel.fromModel(json['college']),
-      deputyDirector: PersonModel.fromModel(json['deputyDirector']),
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+      id: json['id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      college: CollegeModel.fromModel(
+        json['college'] as Map<String, dynamic>? ?? {},
+      ),
+      deputyDirector: PersonModel.fromModel(
+        json['deputyDirector'] as Map<String, dynamic>? ?? {},
+      ),
+      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
+      updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? ''),
       works: (json['works'] as List? ?? [])
           .map<WorkModel>((item) => WorkModel.fromModel(item))
           .toList(),

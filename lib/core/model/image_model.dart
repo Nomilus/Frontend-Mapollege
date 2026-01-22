@@ -3,8 +3,8 @@ class ImageModel {
   final String url;
   final String fileName;
   final String fileType;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   ImageModel({
     required this.id,
@@ -17,12 +17,12 @@ class ImageModel {
 
   factory ImageModel.fromModel(Map<String, dynamic> json) {
     return ImageModel(
-      id: json['id'] as String,
-      url: json['url'] as String,
-      fileName: json['fileName'] as String,
-      fileType: json['fileType'] as String,
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+      id: json['id'] as String? ?? '',
+      url: json['url'] as String? ?? '',
+      fileName: json['fileName'] as String? ?? '',
+      fileType: json['fileType'] as String? ?? '',
+      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
+      updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? ''),
     );
   }
 }

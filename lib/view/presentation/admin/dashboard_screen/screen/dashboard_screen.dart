@@ -1,4 +1,4 @@
-import 'package:application_mapollege/view/presentation/admin/dashboard_screen/controller/dashboard_controller.dart';
+import 'package:mapollege/view/presentation/admin/dashboard_screen/controller/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

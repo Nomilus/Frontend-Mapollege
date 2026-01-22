@@ -28,7 +28,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAqUsXlPlpq7o2ugecI7zjPcK5t3ueM_LA"
+          "current_key": "AIzaSyDYjE9peag-rrgl7p_ToFvyYc83f55FA78"
         }
       ],
       "services": {
@@ -37,13 +37,6 @@
             {
               "client_id": "890641607442-q3q87nn1gjeol0lng68kbssgrel5ppu6.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "890641607442-74fhfeggej670v0gbgootpf9dsko0nsu.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.applicationMapollege"
-              }
             }
           ]
         }
@@ -51,12 +44,28 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:890641607442:android:a2939b840f3acca51f61cb",
+        "mobilesdk_app_id": "1:890641607442:android:a1ffee1e8fd200a71f61cb",
         "android_client_info": {
           "package_name": "com.nomilus.mapollege"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "890641607442-05rcnbgep8ju0ss9e900ohs1sitkeo7o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nomilus.mapollege",
+            "certificate_hash": "448317d7a1bb572db72d1f738d1844e3d21fecee"
+          }
+        },
+        {
+          "client_id": "890641607442-l1km48f23lo53v0i4hgstmkq3cegqorn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nomilus.mapollege",
+            "certificate_hash": "eaa789f04fd7e8c82e9aecbf042c9c9e07515bf6"
+          }
+        },
         {
           "client_id": "890641607442-q3q87nn1gjeol0lng68kbssgrel5ppu6.apps.googleusercontent.com",
           "client_type": 3
@@ -64,7 +73,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAqUsXlPlpq7o2ugecI7zjPcK5t3ueM_LA"
+          "current_key": "AIzaSyDYjE9peag-rrgl7p_ToFvyYc83f55FA78"
         }
       ],
       "services": {
@@ -73,13 +82,6 @@
             {
               "client_id": "890641607442-q3q87nn1gjeol0lng68kbssgrel5ppu6.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "890641607442-74fhfeggej670v0gbgootpf9dsko0nsu.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.applicationMapollege"
-              }
             }
           ]
         }

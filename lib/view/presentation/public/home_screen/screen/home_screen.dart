@@ -2,11 +2,10 @@ import 'package:mapollege/config/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:mapollege/view/components/search_component.dart';
 import 'package:mapollege/view/presentation/public/home_screen/controller/home_controller.dart';
-import 'package:mapollege/view/presentation/public/home_screen/controller/map_controller.dart';
-import 'package:mapollege/view/presentation/public/home_screen/widget/map_widget.dart';
-import 'package:mapollege/view/presentation/public/home_screen/widget/panel_widget.dart';
+import 'package:mapollege/view/presentation/public/home_screen/widget/map/map_controller.dart';
+import 'package:mapollege/view/presentation/public/home_screen/widget/map/map_widget.dart';
+import 'package:mapollege/view/presentation/public/home_screen/widget/panel/panel_widget.dart';
 
 class HomeScreen extends GetView<HomeController> {
   HomeScreen({super.key});
@@ -52,7 +51,25 @@ class HomeScreen extends GetView<HomeController> {
                 Row(
                   spacing: 8,
                   children: [
-                    const Expanded(child: SearchComponents()),
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: 8,
+                        children: [
+                          _buildingSearchBar(),
+                          Obx(() {
+                            return Visibility(
+                              visible: controller.searchResponse.isEmpty,
+                              child: Column(
+                                children: controller.searchResponse
+                                    .map((s) => Text(s.name))
+                                    .toList(),
+                              ),
+                            );
+                          }),
+                        ],
+                      ),
+                    ),
                     IconButton(
                       onPressed: () => Get.toNamed(Routes.private.profile),
                       icon: Obx(() {
@@ -76,33 +93,33 @@ class HomeScreen extends GetView<HomeController> {
                     ),
                   ],
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.surfaceContainer,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 8),
-                        child: Text(
-                          'ดาวเทียม',
-                          style: theme.textTheme.titleSmall,
-                        ),
-                      ),
-                      Obx(() {
-                        return Switch(
-                          value: mapController.isSatellite.value,
-                          onChanged: mapController.toggleMapType,
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                        );
-                      }),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   decoration: BoxDecoration(
+                //     color: theme.colorScheme.surfaceContainer,
+                //     borderRadius: BorderRadius.circular(100),
+                //   ),
+                //   child: Row(
+                //     mainAxisSize: MainAxisSize.min,
+                //     mainAxisAlignment: MainAxisAlignment.end,
+                //     children: [
+                //       Padding(
+                //         padding: const EdgeInsets.only(left: 16, right: 8),
+                //         child: Text(
+                //           'ดาวเทียม',
+                //           style: theme.textTheme.titleSmall,
+                //         ),
+                //       ),
+                //       Obx(() {
+                //         return Switch(
+                //           value: mapController.isSatellite.value,
+                //           onChanged: mapController.toggleMapType,
+                //           materialTapTargetSize:
+                //               MaterialTapTargetSize.shrinkWrap,
+                //         );
+                //       }),
+                //     ],
+                //   ),
+                // ),
                 IconButton(
                   onPressed: () {
                     controller.refreshController?.forward(from: 0);
@@ -133,6 +150,16 @@ class HomeScreen extends GetView<HomeController> {
         ),
         const PanelWidget(),
       ],
+    );
+  }
+
+  Widget _buildingSearchBar() {
+    return SearchBar(
+      controller: controller.searchController,
+      hintText: 'ค้นหา',
+      leading: const Icon(Icons.search),
+      onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
+      onChanged: (value) => controller.onSearchChanged(value),
     );
   }
 
@@ -169,6 +196,10 @@ class HomeScreen extends GetView<HomeController> {
           FloatingActionButton(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
+              side: BorderSide(
+                width: 1,
+                color: theme.colorScheme.surfaceContainerHighest,
+              ),
             ),
             foregroundColor: theme.colorScheme.inverseSurface,
             backgroundColor: theme.colorScheme.surfaceContainerHigh,
@@ -183,24 +214,38 @@ class HomeScreen extends GetView<HomeController> {
   }
 
   Widget _buildBottomAppBar(ThemeData theme) {
-    return BottomAppBar(
-      notchMargin: 0.0,
-      height: 60,
-      child: Row(
-        children: [
-          const Expanded(flex: 3, child: SizedBox.shrink()),
-          Expanded(
-            flex: 1,
-            child: IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+    return Container(
+      foregroundDecoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            width: 1,
+            color: theme.colorScheme.surfaceContainerHigh,
           ),
-          Expanded(
-            flex: 1,
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.settings),
+        ),
+      ),
+      child: BottomAppBar(
+        elevation: 0,
+        notchMargin: 0.0,
+        height: 60,
+        child: Row(
+          children: [
+            const Expanded(flex: 3, child: SizedBox.shrink()),
+            Expanded(
+              flex: 1,
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.search),
+              ),
             ),
-          ),
-        ],
+            Expanded(
+              flex: 1,
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.settings),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

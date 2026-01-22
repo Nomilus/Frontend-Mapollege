@@ -11,8 +11,8 @@ class CollegeModel {
   final double latitude;
   final double longitude;
   final String website;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final List<ManagementModel> managements;
   final List<ImageModel> images;
 
@@ -33,16 +33,18 @@ class CollegeModel {
 
   factory CollegeModel.fromModel(Map<String, dynamic> json) {
     return CollegeModel(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      address: json['address'] as String,
-      description: json['description'] as String,
-      director: PersonModel.fromModel(json['director']),
-      latitude: json['latitude'] as double,
-      longitude: json['longitude'] as double,
-      website: json['website'] as String,
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+      id: json['id'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      address: json['address'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      director: PersonModel.fromModel(
+        json['director'] as Map<String, dynamic>? ?? {},
+      ),
+      latitude: json['latitude'] as double? ?? 0.0,
+      longitude: json['longitude'] as double? ?? 0.0,
+      website: json['website'] as String? ?? '',
+      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
+      updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? ''),
       managements: (json['managements'] as List? ?? [])
           .map<ManagementModel>((item) => ManagementModel.fromModel(item))
           .toList(),

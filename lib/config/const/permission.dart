@@ -3,7 +3,11 @@ import 'package:geolocator/geolocator.dart';
 
 class Permission {
   Future<void> get init async {
-    await FirebaseMessaging.instance.requestPermission();
+    final messaging = await FirebaseMessaging.instance.requestPermission();
     await Geolocator.requestPermission();
+
+    if (messaging.authorizationStatus == AuthorizationStatus.authorized) {
+      await FirebaseMessaging.instance.subscribeToTopic('all_users');
+    }
   }
 }

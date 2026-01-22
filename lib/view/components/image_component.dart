@@ -91,7 +91,7 @@ class _ImageComponentState extends State<_ShowImageComponent> {
           ),
           if (widget.images.length > 1)
             Positioned(
-              bottom: 16,
+              bottom: 4,
               left: 0,
               right: 0,
               child: Row(

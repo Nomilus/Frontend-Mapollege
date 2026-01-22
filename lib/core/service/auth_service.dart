@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mapollege/core/api/people/auth_api.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mapollege/core/api/people/user_api.dart';
@@ -20,7 +20,7 @@ class AuthService extends GetxService {
 
   late final SharedPreferences _prefs;
 
-  static const List<String> _scopes = ['email', 'profile', 'openid'];
+  final List<String> _scopes = ['email', 'profile'];
   bool _isGoogleSignInInitialized = false;
 
   final Rxn<UserModel> currentUser = Rxn<UserModel>();
@@ -159,7 +159,7 @@ class AuthService extends GetxService {
 
   Future<void> signInGoogle() async {
     await _initializeService();
-
+    await _googleSignIn.disconnect().catchError((_) => null);
     if (!_googleSignIn.supportsAuthenticate()) {
       SnackbarUtility.error(
         title: 'ไม่รองรับ',
@@ -170,18 +170,18 @@ class AuthService extends GetxService {
 
     isLoading(true);
     try {
-      if (_scopes.isNotEmpty) {
-        final GoogleSignInAccount account = await _googleSignIn.authenticate(
-          scopeHint: _scopes,
-        );
-
-        await _firebaseSignIn(account);
-      } else {
+      if (_scopes.isEmpty) {
         SnackbarUtility.info(
           title: 'แจ้งเตือน',
           message: 'การเข้าสู่ระบบถูกยกเลิก',
         );
       }
+
+      final GoogleSignInAccount account = await _googleSignIn.authenticate(
+        scopeHint: _scopes,
+      );
+
+      await _firebaseSignIn(account);
     } on GoogleSignInException catch (e) {
       ErrorUtility.handleGoogleSignInException(e);
     } on FirebaseAuthException catch (e) {
@@ -221,7 +221,8 @@ class AuthService extends GetxService {
     try {
       await _googleSignIn.signOut();
       await _firebaseAuth.signOut();
-      _prefs.remove('refresh_token');
+      await _prefs.remove('refresh_token');
+      await _prefs.remove('access_token');
       currentUser(null);
     } on GoogleSignInException catch (e) {
       ErrorUtility.handleGoogleSignInException(e);

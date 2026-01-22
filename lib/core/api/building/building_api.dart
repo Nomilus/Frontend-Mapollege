@@ -1,8 +1,9 @@
+import 'package:flutter/widgets.dart';
 import 'package:mapollege/core/model/building/building_model.dart';
 import 'package:mapollege/core/model/building/location_model.dart';
 import 'package:mapollege/core/service/dio_service.dart';
 import 'package:mapollege/core/utility/error_utility.dart';
-import 'package:mapollege/core/utility/response_utility.dart';
+import 'package:mapollege/core/model/response_model.dart';
 import 'package:dio/dio.dart';
 
 class BuildingApi {
@@ -11,7 +12,7 @@ class BuildingApi {
   final DioService _dio;
   final String requestPath = '/building';
 
-  Future<ResponseUtility<BuildingModel>?> createBuilding({
+  Future<ResponseModel<BuildingModel>?> createBuilding({
     required String name,
     required String address,
     String? description,
@@ -41,14 +42,14 @@ class BuildingApi {
       final formData = FormData.fromMap(map, ListFormat.multiCompatible);
 
       final response = await _dio.dio.post(requestPath, data: formData);
-      return ResponseUtility.fromModel(BuildingModel.fromModel, response.data);
+      return ResponseModel.fromModel(BuildingModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<BuildingModel>?> updateBuilding({
+  Future<ResponseModel<BuildingModel>?> updateBuilding({
     required String id,
     required String name,
     required String address,
@@ -80,14 +81,14 @@ class BuildingApi {
       final formData = FormData.fromMap(map, ListFormat.multiCompatible);
 
       final response = await _dio.dio.put(requestPath, data: formData);
-      return ResponseUtility.fromModel(BuildingModel.fromModel, response.data);
+      return ResponseModel.fromModel(BuildingModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<BuildingModel>?> updateActive({
+  Future<ResponseModel<BuildingModel>?> updateActive({
     required String id,
     required bool isActive,
   }) async {
@@ -96,39 +97,45 @@ class BuildingApi {
         '$requestPath/$id',
         queryParameters: {'active': isActive},
       );
-      return ResponseUtility.fromModel(BuildingModel.fromModel, response.data);
+      return ResponseModel.fromModel(BuildingModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<List<LocationModel>>?> getAllBuildings() async {
+  Future<ResponseModel<List<LocationModel>>?> getAllBuildings() async {
     try {
       final response = await _dio.dio.get(requestPath);
-      return ResponseUtility.fromList(LocationModel.fromModel, response.data);
+      return ResponseModel.fromList(LocationModel.fromModel, response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
     }
   }
 
-  Future<ResponseUtility<BuildingModel>?> getBuildingById({
+  Future<ResponseModel<BuildingModel?>?> getBuildingById({
     required String id,
   }) async {
     try {
       final response = await _dio.dio.get('$requestPath/$id');
-      return ResponseUtility.fromModel(BuildingModel.fromModel, response.data);
+      return ResponseModel.fromModel<BuildingModel?>(
+        BuildingModel.fromModel,
+        response.data,
+      );
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
+    } catch (e) {
+      debugPrint("Error $e");
     }
+    return null;
   }
 
-  Future<ResponseUtility<bool>?> deleteBuilding({required String id}) async {
+  Future<ResponseModel<bool>?> deleteBuilding({required String id}) async {
     try {
       final response = await _dio.dio.delete('$requestPath/$id');
-      return ResponseUtility.fromRaw(response.data);
+      return ResponseModel.fromRaw(response.data);
     } on DioException catch (e) {
       ErrorUtility.handleDioException(e);
       return null;
