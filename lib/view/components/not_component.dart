@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NotComponent extends StatelessWidget {
   const NotComponent({super.key, required this.icon, required this.label});
@@ -15,7 +16,7 @@ class NotComponent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
+          FaIcon(
             icon,
             size: 80,
             color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),

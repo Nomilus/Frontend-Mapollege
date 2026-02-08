@@ -16,11 +16,6 @@ class ProfileController extends GetxController {
   void get toggleTheme =>
       _themeService.toggleThemeApp(value: !_themeService.isDarkMode.value);
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
   Future<void> refreshUser() async => _authService.currentUser.refresh();
 
   Future<void> signOut() async {

@@ -12,7 +12,7 @@ class ThemeService extends GetxService {
     _initialize();
   }
 
-  Future<void> _initialize() async {
+  void _initialize() async {
     _prefs = await SharedPreferences.getInstance();
     final isDark = _prefs.getBool('darkTheme') ?? false;
     isDarkMode(isDark);

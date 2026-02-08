@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:mapollege/core/utility/dialog_utility.dart';
 
 class ImageComponent extends StatelessWidget {
-  const ImageComponent({super.key, required this.images, required this.theme});
+  const ImageComponent({super.key, required this.images});
 
   final List<ImageModel> images;
-  final ThemeData theme;
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+
     if (images.isEmpty) {
       return Container(
         color: theme.colorScheme.surfaceContainerHighest,
@@ -65,7 +66,8 @@ class _ImageComponentState extends State<_ShowImageComponent> {
             itemCount: widget.images.length,
             itemBuilder: (context, index) {
               return InkWell(
-                onTap: () => DialogUtility.showImage(widget.images[index].url),
+                onTap: () =>
+                    DialogUtility.showImage(image: widget.images[index].url),
                 child: CachedNetworkImage(
                   imageUrl: widget.images[index].url,
                   fit: BoxFit.cover,

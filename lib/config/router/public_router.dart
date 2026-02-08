@@ -1,35 +1,59 @@
 import 'package:mapollege/view/presentation/public/auth_screen/controller/auth_controller.dart';
 import 'package:mapollege/view/presentation/public/auth_screen/screen/auth_screen.dart';
 import 'package:mapollege/view/presentation/public/home_screen/controller/home_controller.dart';
-import 'package:mapollege/view/presentation/public/home_screen/widget/map/map_controller.dart';
+import 'package:mapollege/view/presentation/public/home_screen/controller/layout_controller/main_layout_controller.dart';
+import 'package:mapollege/view/presentation/public/home_screen/controller/widget_controller/map_widget_controller.dart';
+import 'package:mapollege/view/presentation/public/home_screen/controller/widget_controller/panel_widget_controller.dart';
 import 'package:mapollege/view/presentation/public/home_screen/screen/home_screen.dart';
-import 'package:mapollege/view/presentation/public/home_screen/widget/panel/panel_controller.dart';
+import 'package:mapollege/view/presentation/public/notification_screen/controller/notification_controller.dart';
+import 'package:mapollege/view/presentation/public/notification_screen/screen/notification_screen.dart';
 import 'package:mapollege/view/presentation/public/room_screen/controller/room_controller.dart';
 import 'package:mapollege/view/presentation/public/room_screen/screen/room_screen.dart';
-import 'package:mapollege/view/presentation/public/scan_screen/controller/scan_controller.dart';
-import 'package:mapollege/view/presentation/public/scan_screen/screen/scan_screen.dart';
+import 'package:mapollege/view/presentation/public/home_screen/controller/layout_controller/scan_layout_controller.dart';
+import 'package:mapollege/view/presentation/public/search_screen/controller/search_controller.dart';
+import 'package:mapollege/view/presentation/public/search_screen/screen/search_screen.dart';
 import 'package:mapollege/view/presentation/public/splash_screen/controller/splash_controller.dart';
 import 'package:mapollege/view/presentation/public/splash_screen/screen/splash_screen.dart';
 import 'package:get/get.dart';
 
 class PublicPath {
-  String get home => "/public/home";
-  String get room => "/public/room";
   String get auth => "/public/auth";
+  String get home => "/public/home";
+  String get notification => "/public/notification";
+  String get room => "/public/room";
+  String get search => "/public/search";
   String get splash => "/public/splash";
-  String get scanner => "/public/scanner";
 }
 
 class PublicRouter extends PublicPath {
   List<GetPage> get init => [
     GetPage(
+      name: super.auth,
+      page: () => const AuthScreen(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<AuthController>(() => AuthController());
+      }),
+    ),
+    GetPage(
       name: super.home,
-      page: () => HomeScreen(),
+      page: () => const HomeScreen(),
       binding: BindingsBuilder(() {
         Get.lazyPut<HomeController>(() => HomeController());
-        Get.lazyPut<MapController>(() => MapController());
-        Get.lazyPut<PanelController>(() => PanelController());
+
+        Get.lazyPut<MainLayoutController>(() => MainLayoutController());
+        Get.lazyPut<ScanLayoutController>(() => ScanLayoutController());
+
+        Get.lazyPut<MapWidgetController>(() => MapWidgetController());
+        Get.lazyPut<PanelWidgetController>(() => PanelWidgetController());
       }),
+    ),
+    GetPage(
+      name: super.notification,
+      page: () => const NotificationScreen(),
+      binding: BindingsBuilder(
+        () =>
+            Get.lazyPut<NotificationController>(() => NotificationController()),
+      ),
     ),
     GetPage(
       name: super.room,
@@ -39,10 +63,10 @@ class PublicRouter extends PublicPath {
       }),
     ),
     GetPage(
-      name: super.auth,
-      page: () => const AuthScreen(),
+      name: super.search,
+      page: () => const SearchScreen(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<AuthController>(() => AuthController());
+        Get.lazyPut<SearchGetController>(() => SearchGetController());
       }),
     ),
     GetPage(
@@ -50,13 +74,6 @@ class PublicRouter extends PublicPath {
       page: () => const SplashScreen(),
       binding: BindingsBuilder(
         () => Get.lazyPut<SplashController>(() => SplashController()),
-      ),
-    ),
-    GetPage(
-      name: super.scanner,
-      page: () => const ScanScreen(),
-      binding: BindingsBuilder(
-        () => Get.lazyPut<ScanController>(() => ScanController()),
       ),
     ),
   ];

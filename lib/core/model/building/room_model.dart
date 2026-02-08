@@ -1,6 +1,8 @@
 import 'package:mapollege/core/model/image_model.dart';
+import 'package:mapollege/core/model/mix_model.dart';
 
-class RoomModel {
+class RoomModel implements MixModel {
+  @override
   final String id;
   final String buildingId;
   final String roomName;
@@ -8,7 +10,9 @@ class RoomModel {
   final String description;
   final String floor;
   final bool isActive;
+  @override
   final DateTime? createdAt;
+  @override
   final DateTime? updatedAt;
   final List<ImageModel> images;
 
@@ -24,6 +28,10 @@ class RoomModel {
     required this.updatedAt,
     required this.images,
   });
+
+  @override
+  String get title =>
+      "$roomName ${(roomNumber.isEmpty || roomNumber == '-') ? '' : "($roomNumber)"}";
 
   factory RoomModel.fromModel(Map<String, dynamic> json) {
     return RoomModel(

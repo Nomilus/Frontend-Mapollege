@@ -1,7 +1,13 @@
-class LocationModel {
+import 'package:mapollege/core/model/mix_model.dart';
+
+class LocationModel implements MixLocationModel {
+  @override
   final String id;
+  @override
   final String name;
+  @override
   final double latitude;
+  @override
   final double longitude;
 
   LocationModel({

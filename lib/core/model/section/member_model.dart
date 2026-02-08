@@ -3,10 +3,12 @@ import 'package:mapollege/core/model/image_model.dart';
 abstract class Position<T extends Enum> {
   String get value;
   String get name;
+  int get priority;
   T fromValue(String value);
+  int fromPriority(List<Position<T>> position);
 }
 
-class MemberModel<T extends Position> {
+class MemberModel<T extends Position>  {
   final String id;
   final String prefix;
   final String firstName;

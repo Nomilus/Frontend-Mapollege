@@ -11,9 +11,12 @@ import 'package:mapollege/config/router/public_router.dart';
 import 'package:mapollege/config/router/routes.dart';
 import 'package:mapollege/config/theme/app_theme.dart';
 import 'package:mapollege/firebase_options.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 @pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +24,9 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await Register().init;
-  runApp(const MainApp());
+  initializeDateFormatting('th', null).then((_) {
+    runApp(const MainApp());
+  });
 }
 
 class MainService extends GetxService {
@@ -31,7 +36,7 @@ class MainService extends GetxService {
     _initialize();
   }
 
-  Future<void> _initialize() async {
+  void _initialize() async {
     await Permission().init;
   }
 }
@@ -53,7 +58,7 @@ class MainApp extends StatelessWidget {
         ...PrivateRouter().init,
         ...PublicRouter().init,
       ],
-      initialRoute: Routes.public.home,
+      initialRoute: Routes.public.splash,
     );
   }
 }

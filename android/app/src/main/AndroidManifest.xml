@@ -9,60 +9,35 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <application
-        android:label="mapollege"
-        android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:launchMode="singleTop"
-            android:taskAffinity=""
-            android:theme="@style/LaunchTheme"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-            android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize">
-            <meta-data
-                android:name="io.flutter.embedding.android.NormalTheme"
-                android:resource="@style/NormalTheme"
-            />
+    <application android:label="Mapollege (Demo)" android:name="${applicationName}" android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_notification" />
+
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/ic_launcher_background" />
+
+        <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop" android:taskAffinity="" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
+            <meta-data android:name="io.flutter.embedding.android.NormalTheme" android:resource="@style/NormalTheme" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="flutterEmbedding"
-            android:value="2" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDYjE9peag-rrgl7p_ToFvyYc83f55FA78" />
-        <meta-data
-            android:name="com.google.android.maps.v2.API_MAPS_ID"
-            android:value="7d65f3ad0ca7763d3a2efd33" />
-        <meta-data
-            android:name="firebase_messaging_auto_init_enabled"
-            android:value="false" />
-        <meta-data
-            android:name="firebase_analytics_collection_enabled"
-            android:value="false" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        <meta-data android:name="flutterEmbedding" android:value="2" />
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDYjE9peag-rrgl7p_ToFvyYc83f55FA78" />
+        <meta-data android:name="com.google.android.maps.v2.API_MAPS_ID" android:value="7d65f3ad0ca7763d3a2efd33" />
+        <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
+        <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
-        <meta-data
-            android:name="com.google.android.gms.credentials.API_ENABLED"
-            android:value="false" />
+        <meta-data android:name="com.google.android.gms.credentials.API_ENABLED" android:value="false" />
 
-        <meta-data
-            android:name="com.google.android.gms.credentials.CredentialPickerConfig"
-            android:value="false" />
+        <meta-data android:name="com.google.android.gms.credentials.CredentialPickerConfig" android:value="false" />
 
-        <meta-data
-            android:name="androidx.credentials.CREDENTIAL_SERVICE_ENABLED"
-            android:value="false" />
+        <meta-data android:name="androidx.credentials.CREDENTIAL_SERVICE_ENABLED" android:value="false" />
 
     </application>
     <queries>

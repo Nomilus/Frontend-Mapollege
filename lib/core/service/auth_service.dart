@@ -37,7 +37,7 @@ class AuthService extends GetxService {
     });
   }
 
-  Future<void> _initialize() async {
+  void _initialize() async {
     isChecking(true);
     await _initializeService();
     await _refreshToken();

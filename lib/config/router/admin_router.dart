@@ -8,7 +8,7 @@ class AdminPath {
 }
 
 class AdminRouter extends AdminPath {
-  List<GetPage> get init => [
+   List<GetPage> get init => [
     GetPage(
       name: super.dashboard,
       page: () => const DashboardScreen(),

@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:mapollege/core/model/pageable_model.dart';
+import 'package:mapollege/core/utility/parse_utility.dart';
 
 class ResponseModel<T> {
   final String title;
@@ -11,14 +13,17 @@ class ResponseModel<T> {
     required this.data,
   });
 
-  static ResponseModel<T> fromModel<T>(
+  static Future<ResponseModel<T>> fromModel<T>(
     T Function(Map<String, dynamic>) parser,
     dynamic json,
-  ) {
+  ) async {
     return ResponseModel<T>(
       title: json['title'] as String? ?? '',
       createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
-      data: parser(json['data']),
+      data: await compute(ParseUtility.parseModel<T>, {
+        'parser': parser,
+        'data': json['data'],
+      }),
     );
   }
 
@@ -30,31 +35,45 @@ class ResponseModel<T> {
     );
   }
 
-  static ResponseModel<List<T>> fromList<T>(
+  static Future<ResponseModel<List<T>>> fromList<T>(
     T Function(Map<String, dynamic>) parser,
     Map<String, dynamic> json,
-  ) {
+  ) async {
     final rawList = json['data'] as List? ?? [];
-
-    final listData = rawList
-        .map((e) => parser(e as Map<String, dynamic>))
-        .toList();
 
     return ResponseModel<List<T>>(
       title: json['title'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
-      data: listData,
+      data: await compute(ParseUtility.parseList<T>, {
+        'parser': parser,
+        'list': rawList,
+      }),
     );
   }
 
-  static ResponseModel<PageableModel<T>> fromPageable<T>(
+  static Future<ResponseModel<PageableModel<T>>> fromPageable<T>(
     T Function(Map<String, dynamic>) parser,
     dynamic json,
-  ) {
+  ) async {
+    final data = json['data'] as Map<String, dynamic>? ?? {};
+    final rawContent = data['content'] as List? ?? [];
+
     return ResponseModel<PageableModel<T>>(
       title: json['title'] as String? ?? '',
       createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
-      data: PageableModel.fromModel(parser, json['data']),
+      data: PageableModel<T>(
+        content: await compute(ParseUtility.parseList<T>, {
+          'parser': parser,
+          'list': rawContent,
+        }),
+        totalElements: data['totalElements'] as int? ?? 0,
+        totalPages: data['totalPages'] as int? ?? 0,
+        pageNumber: data['number'] as int? ?? 0,
+        pageSize: data['size'] as int? ?? 0,
+        last: data['last'] as bool? ?? false,
+        first: data['first'] as bool? ?? false,
+        empty: data['empty'] as bool? ?? false,
+      ),
     );
   }
 }

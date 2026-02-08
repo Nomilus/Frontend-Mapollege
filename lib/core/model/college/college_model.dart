@@ -1,14 +1,19 @@
 import 'package:mapollege/core/model/college/management_model.dart';
 import 'package:mapollege/core/model/image_model.dart';
+import 'package:mapollege/core/model/mix_model.dart';
 import 'package:mapollege/core/model/people/person_model.dart';
 
-class CollegeModel {
+class CollegeModel implements MixLocationModel {
+  @override
   final String id;
+  @override
   final String name;
   final String address;
   final String description;
   final PersonModel director;
+  @override
   final double latitude;
+  @override
   final double longitude;
   final String website;
   final DateTime? createdAt;

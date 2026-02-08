@@ -1,9 +1,11 @@
 import 'package:mapollege/core/model/building/room_model.dart';
 import 'package:mapollege/core/model/image_model.dart';
+import 'package:mapollege/core/model/mix_model.dart';
 import 'package:mapollege/core/model/section/department_model.dart';
 import 'package:mapollege/core/model/section/work_model.dart';
 
-class BuildingModel {
+class BuildingModel implements MixModel {
+  @override
   final String id;
   final String name;
   final String address;
@@ -12,7 +14,9 @@ class BuildingModel {
   final double longitude;
   final int floorCount;
   final bool isActive;
+  @override
   final DateTime? createdAt;
+  @override
   final DateTime? updatedAt;
   final List<ImageModel> images;
   final List<RoomModel> rooms;
@@ -36,7 +40,34 @@ class BuildingModel {
     required this.works,
   });
 
+  @override
+  String get title => name;
+
   factory BuildingModel.fromModel(Map<String, dynamic> json) {
+    final images = (json['images'] as List? ?? [])
+        .map<ImageModel>((item) => ImageModel.fromModel(item))
+        .toList();
+    images.sort((a, b) => a.fileName.compareTo(b.fileName));
+
+    final rooms = (json['rooms'] as List? ?? [])
+        .map<RoomModel>((item) => RoomModel.fromModel(item))
+        .toList();
+    rooms.sort((a, b) {
+      int floorCompare = a.floor.compareTo(b.floor);
+      if (floorCompare != 0) return floorCompare;
+      return a.roomNumber.compareTo(b.roomNumber);
+    });
+
+    final departments = (json['departments'] as List? ?? [])
+        .map<DepartmentModel>((item) => DepartmentModel.fromModel(item))
+        .toList();
+    departments.sort((a, b) => a.title.compareTo(b.title));
+
+    final works = (json['works'] as List? ?? [])
+        .map<WorkModel>((item) => WorkModel.fromModel(item))
+        .toList();
+    works.sort((a, b) => a.title.compareTo(b.title));
+
     return BuildingModel(
       id: json['id'] as String? ?? '',
       name: json['name'] as String? ?? '',
@@ -48,18 +79,10 @@ class BuildingModel {
       isActive: json['isActive'] as bool? ?? false,
       createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
       updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? ''),
-      images: (json['images'] as List? ?? [])
-          .map<ImageModel>((item) => ImageModel.fromModel(item))
-          .toList(),
-      rooms: (json['rooms'] as List? ?? [])
-          .map<RoomModel>((item) => RoomModel.fromModel(item))
-          .toList(),
-      departments: (json['departments'] as List? ?? [])
-          .map<DepartmentModel>((item) => DepartmentModel.fromModel(item))
-          .toList(),
-      works: (json['works'] as List? ?? [])
-          .map<WorkModel>((item) => WorkModel.fromModel(item))
-          .toList(),
+      images: images,
+      rooms: rooms,
+      departments: departments,
+      works: works,
     );
   }
 }

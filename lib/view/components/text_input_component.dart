@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TextInputComponent extends StatefulWidget {
   const TextInputComponent({
@@ -94,7 +95,7 @@ class _TextInputComponentState extends State<TextInputComponent> {
                       if (value.text.isNotEmpty) {
                         return IconButton(
                           onPressed: widget.control.clear,
-                          icon: const Icon(Icons.close),
+                          icon: const FaIcon(FontAwesomeIcons.xmark),
                         );
                       }
                       return const SizedBox.shrink();

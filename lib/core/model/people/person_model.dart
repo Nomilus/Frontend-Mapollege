@@ -1,11 +1,15 @@
 import 'package:mapollege/core/model/image_model.dart';
+import 'package:mapollege/core/model/mix_model.dart';
 
-class PersonModel {
+class PersonModel implements MixModel {
+  @override
   final String id;
   final String prefix;
   final String firstName;
   final String lastName;
+  @override
   final DateTime? createdAt;
+  @override
   final DateTime? updatedAt;
   final ImageModel image;
 
@@ -18,6 +22,9 @@ class PersonModel {
     required this.updatedAt,
     required this.image,
   });
+
+  @override
+  String get title => "$prefix $firstName $lastName";
 
   factory PersonModel.fromModel(Map<String, dynamic> json) {
     return PersonModel(
